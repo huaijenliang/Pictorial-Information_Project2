@@ -1,17 +1,6 @@
-%% Wrapper to run X. Zhu's face landmark detector code from
-% https://www.ics.uci.edu/~xzhu/face/
-% Code modified by: Nitin J. Sanket, PhD in Computer Science Student,
-% University of Maryland, College Park
-
 clc
 clear all
 close all
-
-%% Setup Paths
-% Specify full image name here
-% You can replace this part using a loop and dir in Matlab to handle
-% multiple images
-ImagePath = 'images/1.jpg';
 
 %% Compile Mex files as needed - need to do it once!
 % Uncomment this line for the first time!
@@ -47,20 +36,3 @@ elseif length(model.components)==18
 else
     error('Can not recognize this model');
 end
-
-
-im = imread(ImagePath);
-% clf; imagesc(im); axis image; axis off; drawnow;
-
-tic;
-bs = detect(im, model, model.thresh);
-bs = clipboxes(im, bs);
-bs = nms_face(bs,0.3);
-dettime = toc;
-
-% show highest scoring one
-% figure,showboxes(im, bs(1),posemap),title('Highest scoring detection');
-% show all
-figure,showboxes(im, bs,posemap),title('All detections above the threshold');
-
-fprintf('Detection took %.1f seconds\n',dettime);
