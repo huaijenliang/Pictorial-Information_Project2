@@ -12,17 +12,30 @@ initialFaceDetector;
 % multiple images
 ImagePath = 'images/';
 files = dir(strcat(ImagePath, '*.jpg'));
-imagesNum = length(files);
+imagesNum = 2;% length(files);
 images = cell(1, imagesNum);
 bs = cell(1, imagesNum);
+fiducialPoints = cell(1, imagesNum);
+tri = cell(1, imagesNum);
+% 1: dest, 2: source
 for i = 1:imagesNum
     fileName = strcat(ImagePath, files(i).name);
     images{i} = imread(fileName);
 %     images{i} = im2double(images{i});
-    bs{i} = detect(images{i}, model, model.thresh);
-    bs{i} = clipboxes(images{i}, bs{i});
-    bs{i} = nms_face(bs{i},0.3);
-    figure,showboxes(images{i}, bs{i},posemap),title('All detections above the threshold');
+    fiducialPoints{i} = findFiducialPoints(images{i}, model);
+    if i == 1
+        tri{i} = delaunay(fiducialPoints{i}(:, 1), fiducialPoints{i}(:, 2));
+    else
+        tri{i} = tri{1};
+    end
+    figure
+    % showboxes(images{i}, bs{i},posemap)
+    imagesc(images{i})
+    title('All detections above the threshold');
+    hold on
+    triplot(tri{i}, fiducialPoints{i}(:, 1), fiducialPoints{i}(:, 2), 'r-')
+    plot(fiducialPoints{i}(:, 1), fiducialPoints{i}(:, 2), 'b*')
+    hold off
 end
 
 % show highest scoring one
