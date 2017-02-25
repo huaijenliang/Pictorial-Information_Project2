@@ -2,7 +2,7 @@ function [ outputImg ] = triWarp( images, fiducialPoints )
 %UNTITLED4 Summary of this function goes here
 %   Detailed explanation goes here
 
-destImgSize = imsize(images{1});
+destImgSize = size(images{1});
 % triangulation
 destTri= delaunay(fiducialPoints{1}(:, 1), fiducialPoints{1}(:, 2));
 
@@ -24,7 +24,8 @@ destBary = computeBarycentricC(destPointsXY, tIndex, invDestM);
 sourceM = formTriangleMatrice(fiducialPoints{2}, destTri);
 sourcePoints = computeImageC(destBary, tIndex, sourceM);
 sourcePointsXY = sourcePoints(:, 1:2);
-
+images{1} = im2double(images{1});
+images{2} = im2double(images{2});
 outputImg = copyPixel(images{1}, images{2}, destPointsXY, sourcePointsXY);
 
 
