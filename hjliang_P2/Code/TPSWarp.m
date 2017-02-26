@@ -14,7 +14,7 @@ mask = isnan(tIndex);
 destPointsXY(mask, :) = [];
 
 % solve TPS mapping
-TPSCoe = solveTPS(fiducialPoints{1}. fiducialPoints{2});
+TPSCoe = solveTPS(fiducialPoints{1}, fiducialPoints{2});
 sourcePointsXY = TPSMapping(destPointsXY, TPSCoe, fiducialPoints{1});
 
 %blending

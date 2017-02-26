@@ -4,7 +4,7 @@ function [ mapPoints ] = TPSMapping( points, TPSCoe, keyPoints )
 
 numPoints = size(points, 1);
 numKeyPoints = size(keyPoints, 1);
-tempPoints = reshpae(points, [], 1, 2);
+tempPoints = reshape(points, [], 1, 2);
 tempPoints = repmat(tempPoints, 1, numKeyPoints, 1);
 tempKeyPoints = reshape(keyPoints, 1, [], 2);
 tempKeyPoints = repmat(tempKeyPoints, numPoints, 1, 1);
