@@ -24,10 +24,10 @@ destBary = computeBarycentricC(destPointsXY, tIndex, invDestM);
 sourceM = formTriangleMatrice(fiducialPoints{2}, destTri);
 sourcePoints = computeImageC(destBary, tIndex, sourceM);
 sourcePointsXY = sourcePoints(:, 1:2);
-images{1} = im2double(images{1});
-images{2} = im2double(images{2});
+% images{1} = im2double(images{1});
+% images{2} = im2double(images{2});
 
-outputImg = copyPixel(images{1}, images{2}, destPointsXY, sourcePointsXY);
+% outputImg = copyPixel(images{1}, images{2}, destPointsXY, sourcePointsXY);
 outputImg = blending(images{1}, images{2}, destPointsXY, sourcePointsXY);
 
 
