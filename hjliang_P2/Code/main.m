@@ -39,6 +39,7 @@ for i = 1:imagesNum
 end
 
 outputImg = triWarp(images, fiducialPoints);
+outputImg = TPSWarp(images, fiducialPoints);
 % show highest scoring one
 % figure,showboxes(im, bs(1),posemap),title('Highest scoring detection');
 % show all
