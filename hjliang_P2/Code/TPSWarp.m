@@ -4,14 +4,11 @@ function [ outputImg ] = TPSWarp( images, fiducialPoints )
 
 destImgSize = size(images{1});
 
-% find points that is in the convex
-% triangulation
-destTri= delaunay(fiducialPoints{1}(:, 1), fiducialPoints{1}(:, 2));
+% find points that is in the convex formed by fiducial points
 [pointsX, pointsY] = meshgrid(1:destImgSize(2), 1:destImgSize(1));
-destPointsXY = [pointsX(:), pointsY(:)];
-tIndex = tsearchn(fiducialPoints{1}, destTri, destPointsXY);
-mask = isnan(tIndex);
-destPointsXY(mask, :) = [];
+destConvhull = convhull(fiducialPoints{1}(:, 1), fiducialPoints{1}(:, 2));
+destInConv = inpolygon(pointsX, pointsY, fiducialPoints{1}(destConvhull, 1), fiducialPoints{1}(destConvhull, 2));
+destPointsXY = [pointsX(destInConv), pointsY(destInConv)];
 
 % solve TPS mapping
 TPSCoe = solveTPS(fiducialPoints{1}, fiducialPoints{2});
