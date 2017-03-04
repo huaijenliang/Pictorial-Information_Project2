@@ -40,18 +40,6 @@ if strcmp(faceDetector, 'Zhu')
 	end
 else
 	%% Setup Paths
-	CodePath = './FaceLandmarksNitin.py';
-	PredictorPath = 'shape_predictor_68_face_landmarks.dat';
-	FacesPath = '../examples/faces2/Nitin.jpg';
-	
-	%% Execute Python Code
-	Command = ['python ', CodePath, ' ', PredictorPath, ' ', FacesPath];
-	[status, cmdout] = system(Command);
-	
-	%% Parse Outputs
-	I = imread(FacesPath);
-	imshow(I);
-	
-	% Parse the console output and prettify it - please do not modify this code
-	FaceData = ParseInputs(cmdout);
+	CodePath = './FaceDetectorCodes/DLib/python_examples/FaceLandmarksNitin.py';
+	PredictorPath = './FaceDetectorCodes/DLib/python_examples/shape_predictor_68_face_landmarks.dat';
 end
