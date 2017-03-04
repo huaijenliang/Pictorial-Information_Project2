@@ -3,6 +3,7 @@ function [image, fiducialPoints ] = findFiducialPoints( filePath, model, faceDet
 %   Detailed explanation goes here
 image = imread(filePath);
 if strcmp(faceDetector.name, 'Zhu')
+    image = im2double(image);
 	bs = detect(image, model, model.thresh);
 	bs = clipboxes(image, bs);
 	bs = nms_face(bs,0.3);

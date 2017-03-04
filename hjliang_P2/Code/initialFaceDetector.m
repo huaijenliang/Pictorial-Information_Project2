@@ -1,9 +1,4 @@
-clc
-clear all
-close all
-
-
-if strcmp(faceDetector, 'Zhu')
+if strcmp(faceDetector.name, 'Zhu')
 	%% Compile Mex files as needed - need to do it once!
 	% Uncomment this line for the first time!
 	% compile;

@@ -4,8 +4,8 @@ clc
 clear all
 close all
 
-model = 0;
-faceDetector.name = 'DLib';
+% model = 0;
+faceDetector.name = 'Zhu';
 initialFaceDetector;
 
 %% Setup Paths
@@ -14,6 +14,8 @@ initialFaceDetector;
 % multiple images
 ImagePath = 'images/';
 files = dir(strcat(ImagePath, '*.jpg'));
+% imageName = [files(1).name; files(2).name]
+imageName = {'images/12.jpg'; 'images/2.jpg'};
 imagesNum = 2;% length(files);
 images = cell(1, imagesNum);
 bs = cell(1, imagesNum);
@@ -21,10 +23,10 @@ fiducialPoints = cell(1, imagesNum);
 tri = cell(1, imagesNum);
 % 1: dest, 2: source
 for i = 1:imagesNum
-    fileName = strcat(ImagePath, files(i).name);
+    fileName = imageName{i};%strcat(ImagePath, files(i).name);
 %     images{i} = imread(fileName);
 %     images{i} = im2double(images{i});
-    [images{i}, fiducialPoints{i}] = findFiducialPoints(fileName, model);
+    [images{i}, fiducialPoints{i}] = findFiducialPoints(fileName, model, faceDetector);
     if i == 1
         tri{i} = delaunay(fiducialPoints{i}(:, 1), fiducialPoints{i}(:, 2));
     else
