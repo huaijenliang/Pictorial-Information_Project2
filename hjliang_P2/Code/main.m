@@ -4,6 +4,8 @@ clc
 clear all
 close all
 
+model = 0;
+FaceData = 0;
 initialFaceDetector;
 
 %% Setup Paths
@@ -22,7 +24,7 @@ for i = 1:imagesNum
     fileName = strcat(ImagePath, files(i).name);
     images{i} = imread(fileName);
 %     images{i} = im2double(images{i});
-    fiducialPoints{i} = findFiducialPoints(images{i}, model);
+    fiducialPoints{i} = findFiducialPoints(images{i}, model, FaceData);
     if i == 1
         tri{i} = delaunay(fiducialPoints{i}(:, 1), fiducialPoints{i}(:, 2));
     else
