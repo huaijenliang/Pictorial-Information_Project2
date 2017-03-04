@@ -40,6 +40,6 @@ if strcmp(faceDetector, 'Zhu')
 	end
 else
 	%% Setup Paths
-	CodePath = './FaceDetectorCodes/DLib/python_examples/FaceLandmarksNitin.py';
-	PredictorPath = './FaceDetectorCodes/DLib/python_examples/shape_predictor_68_face_landmarks.dat';
+	faceDetector.codePath = './FaceDetectorCodes/DLib/python_examples/FaceLandmarksNitin.py';
+	faceDetector.predictorPath = './FaceDetectorCodes/DLib/python_examples/shape_predictor_68_face_landmarks.dat';
 end

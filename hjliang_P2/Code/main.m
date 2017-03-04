@@ -5,6 +5,7 @@ clear all
 close all
 
 model = 0;
+faceDetector.name = 'DLib';
 initialFaceDetector;
 
 %% Setup Paths
