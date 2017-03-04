@@ -32,7 +32,8 @@ if strcmp(faceDetector.name, 'Zhu')
 	    posemap = [90:-15:15 0 0 0 0 0 0 -15:-15:-90];
 	else
 	    error('Can not recognize this model');
-	end
+    end
+    faceDetector.model = model;
 else
 	%% Setup Paths
 	faceDetector.codePath = './FaceDetectorCodes/DLib/python_examples/FaceLandmarksNitin.py';

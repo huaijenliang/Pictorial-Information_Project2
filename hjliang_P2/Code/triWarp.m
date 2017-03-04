@@ -1,8 +1,8 @@
-function [ outputImg ] = triWarp( images, fiducialPoints )
+function [ outputImg ] = triWarp( destImg, sourceImg, fiducialPoints )
 %UNTITLED4 Summary of this function goes here
 %   Detailed explanation goes here
 
-destImgSize = size(images{1});
+destImgSize = size(destImg);
 % triangulation
 destTri= delaunay(fiducialPoints{1}(:, 1), fiducialPoints{1}(:, 2));
 
@@ -28,7 +28,7 @@ sourcePointsXY = sourcePoints(:, 1:2);
 % images{2} = im2double(images{2});
 
 % outputImg = copyPixel(images{1}, images{2}, destPointsXY, sourcePointsXY);
-outputImg = blending(images{1}, images{2}, destPointsXY, sourcePointsXY);
+outputImg = blending(destImg, sourceImg, destPointsXY, sourcePointsXY);
 
 
 end

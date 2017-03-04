@@ -1,8 +1,8 @@
-function [ outputImg ] = TPSWarp( images, fiducialPoints )
+function [ outputImg ] = TPSWarp( destImg, sourceImg, fiducialPoints )
 %UNTITLED4 Summary of this function goes here
 %   Detailed explanation goes here
 
-destImgSize = size(images{1});
+destImgSize = size(destImg);
 
 % find points that is in the convex formed by fiducial points
 [pointsX, pointsY] = meshgrid(1:destImgSize(2), 1:destImgSize(1));
@@ -15,7 +15,7 @@ TPSCoe = solveTPS(fiducialPoints{1}, fiducialPoints{2});
 sourcePointsXY = TPSMapping(destPointsXY, TPSCoe, fiducialPoints{1});
 
 %blending
-outputImg = blending(images{1}, images{2}, destPointsXY, sourcePointsXY);
+outputImg = blending(destImg, sourceImg, destPointsXY, sourcePointsXY);
 
 end
 
