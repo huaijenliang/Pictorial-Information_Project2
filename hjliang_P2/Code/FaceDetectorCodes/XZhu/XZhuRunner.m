@@ -15,7 +15,7 @@ ImagePath = 'images/1.jpg';
 
 %% Compile Mex files as needed - need to do it once!
 % Uncomment this line for the first time!
-% compile;
+compile;
 
 %% load and optionally visualize model
 % Pre-trained model with 146 parts. Works best for faces larger than 80*80
