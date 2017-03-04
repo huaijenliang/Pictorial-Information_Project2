@@ -1,8 +1,8 @@
 addpath(genpath('.'));
 
-clc
-clear all
-close all
+% clc
+% clear all
+% close all
 
 model = 0;
 faceDetector.name = 'Zhu';
@@ -15,7 +15,7 @@ initialFaceDetector;
 ImagePath = 'images/';
 files = dir(strcat(ImagePath, '*.jpg'));
 % imageName = [files(1).name; files(2).name]
-imagesName = {'images/1.jpg'; 'images/2.jpg'};
+imagesName = {'test.jpg'; 'images/1.jpg'};
 imagesNum = 2;% length(files);
 images = cell(1, imagesNum);
 bs = cell(1, imagesNum);
