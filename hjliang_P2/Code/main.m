@@ -4,8 +4,8 @@ clc
 clear all
 close all
 
-% model = 0;
-faceDetector.name = 'Zhu';
+model = 0;
+faceDetector.name = 'DLib';
 initialFaceDetector;
 
 %% Setup Paths
