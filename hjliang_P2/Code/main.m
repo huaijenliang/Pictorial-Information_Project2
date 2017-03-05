@@ -15,7 +15,7 @@ initialFaceDetector;
 ImagePath = 'images/';
 files = dir(strcat(ImagePath, '*.jpg'));
 % imageName = [files(1).name; files(2).name]
-imagesName = {'test.jpg'; 'images/1.jpg'};
+imagesName = {'images/thomas.PNG'; 'images/1.jpg'};
 imagesNum = 2;% length(files);
 images = cell(1, imagesNum);
 bs = cell(1, imagesNum);
@@ -24,9 +24,9 @@ tri = cell(1, imagesNum);
 % 1: dest, 2: source
 for i = 1:imagesNum
     fileName = imagesName{i};%strcat(ImagePath, files(i).name);
-%     images{i} = imread(fileName);
+    images{i} = imread(fileName);
 %     images{i} = im2double(images{i});
-    [images{i}, fiducialPoints{i}] = findFiducialPoints(fileName, model, faceDetector);
+    [fiducialPoints{i}] = findFiducialPoints(images{i}, faceDetector);
     if i == 1
         tri{i} = delaunay(fiducialPoints{i}(:, 1), fiducialPoints{i}(:, 2));
     else
@@ -42,8 +42,8 @@ for i = 1:imagesNum
     hold off
 end
 
-outputImg.tri = triWarp(images, fiducialPoints);
-outputImg.TPS = TPSWarp(images, fiducialPoints);
+outputImg.tri = triWarp(images{1}, images{2}, fiducialPoints);
+outputImg.TPS = TPSWarp(images{1}, images{2}, fiducialPoints);
 
 figure
 set(gca,'position',[0 0 1 1],'units','normalized')

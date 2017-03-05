@@ -3,7 +3,7 @@ function [ writerObj ] = createVideo( images, framesNum, framesRate, fileName )
 %   Detailed explanation goes here
 
 % create the video writer with 1 fps
-writerObj = VideoWriter(strcat(fileName, '.avi'));
+writerObj = VideoWriter(fileName);
 writerObj.FrameRate = framesRate;
 % open the video writer
 open(writerObj);

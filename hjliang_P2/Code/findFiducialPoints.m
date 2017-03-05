@@ -1,4 +1,4 @@
-function [image, fiducialPoints ] = findFiducialPoints( image, faceDetector)
+function [fiducialPoints ] = findFiducialPoints( image, faceDetector)
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
 if strcmp(faceDetector.name, 'Zhu')
