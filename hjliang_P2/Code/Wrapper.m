@@ -8,7 +8,7 @@ clc
 clear all
 close all
 
-faceDetector.name = 'Zhu';
+faceDetector.name = 'DLib';
 initialFaceDetector;
 
 %% Setup Paths
@@ -18,7 +18,7 @@ initialFaceDetector;
 videoPath = '../Videos/Video1/1.avi';
 videoExt = videoPath((end - 3):end);
 images = readVideo(videoPath);
-imagesNum = 2;%length(images);
+imagesNum = length(images);
 outputImg = cell(1, imagesNum);
 % imagesName = {'test.jpg'; 'images/1.jpg'};
 % imagesNum = length(imagesName);
