@@ -6,7 +6,6 @@ outputImg = destImg;
 [destR, destC, channels] = size(destImg);
 [sourceR, sourceC, ~] = size(sourceImg);
 destIndex = sub2ind([destR, destC], destXY(:, 2), destXY(:, 1));
-sourceIndex = sub2ind([sourceR, sourceC], sourceXY(:, 2), sourceXY(:, 1));
 
 [x, y] = meshgrid(1:sourceC, 1:sourceR);
 

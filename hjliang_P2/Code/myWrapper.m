@@ -4,9 +4,13 @@ function [ outputImg ] = myWrapper( destImg, sourceImg, faceDetector, wrapMethod
 outputImg = [];
 destImg = double(destImg);
 sourceImg = double(sourceImg);
-[fiducialPoints{1}] = findFiducialPoints(destImg, faceDetector);
-[fiducialPoints{2}] = findFiducialPoints(sourceImg, faceDetector);
+fiducialPointsCell = findFiducialPoints(destImg, faceDetector);
+fiducialPoints{1} = fiducialPointsCell{1};
+fiducialPointsCell = findFiducialPoints(sourceImg, faceDetector);
+fiducialPoints{2} = fiducialPointsCell{1};
+
 if (isempty(fiducialPoints{1}) || isempty(fiducialPoints{2}))
+    disp('Cannot find any face');
     return;
 end
 if strcmp(wrapMethod, 'tri')
@@ -14,6 +18,6 @@ if strcmp(wrapMethod, 'tri')
 else
     outputImg = TPSWarp(destImg, sourceImg, fiducialPoints);
 end
-outputImg = im2double(uint8(outputImg));
+outputImg = im2double(outputImg);
 end
 

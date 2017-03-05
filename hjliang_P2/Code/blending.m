@@ -2,8 +2,8 @@ function [ outputImg ] = blending( destImg, sourceImg, destXY, sourceXY )
 %UNTITLED7 Summary of this function goes here
 %   Detailed explanation goes here
 
-destImg = im2double(destImg);
-sourceImg = im2double(sourceImg);
+% destImg = double(destImg);
+% sourceImg = double(sourceImg);
 d = imGradFeature(destImg);
 s = imGradFeature(sourceImg);
 newD = zeros(size(d));
@@ -14,7 +14,7 @@ end
 param = buildModPoissonParam(size(newD));
 % imagesc(newD(:, :, :, 1))
 outputImg = modPoisson(newD, param, 1E-8);
-
+outputImg = uint8(outputImg);
 % destS = size(destImg);
 % tempImg = copyPixel(destImg, sourceImg, destXY, sourceXY);
 % mask = zeros(destS(1), destS(2));
