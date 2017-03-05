@@ -8,6 +8,8 @@ clc
 clear all
 close all
 
+swapFace = 1;
+wrapMethod = 'tri';
 faceDetector.name = 'DLib';
 initialFaceDetector;
 
@@ -27,7 +29,11 @@ outputImg = cell(1, imagesNum);
 sourceImg = imread('images/handsome.jpg');
 count = 0;
 for i = 1:imagesNum
-    outputImg{count + 1} = myWrapper(images{i}, sourceImg, faceDetector, 'tri');
+    if swapFace
+        outputImg{count + 1} = myWrapper(images{i}, faceDetector, wrapMethod);
+    else
+        outputImg{count + 1} = myWrapper(images{i}, sourceImg, faceDetector, wrapMethod);
+    end
     if isempty(outputImg{count})
         continue;
     end

@@ -15,9 +15,9 @@ if strcmp(faceDetector.name, 'Zhu')
 else
 	%% Execute Python Code
     filePath = './forDLib.jpg';
-    imwrite(image, filePath);
+    imwrite(uint8(image), filePath);
 	Command = ['python ', faceDetector.codePath, ' ', faceDetector.predictorPath, ' ', filePath];
-	[status, cmdout] = system(Command);
+	[~, cmdout] = system(Command);
     
 	Str = strsplit(cmdout, {'\n', ' ', '(', ')', ',',});
     NumFaces = str2double(Str{1});
