@@ -25,11 +25,16 @@ outputImg = cell(1, imagesNum);
 % images = cell(1, imagesNum);
 % 1: dest, 2: source
 sourceImg = imread('images/handsome.jpg');
+count = 0;
 for i = 1:imagesNum
-    outputImg{i} = myWrapper(images{i}, sourceImg, faceDetector, 'tri');
+    outputImg{count + 1} = myWrapper(images{i}, sourceImg, faceDetector, 'tri');
+    if isempty(outputImg{count})
+        continue;
+    end
+    count = count + 1;
 end
 
-createVideo(outputImg, 3, 1, strcat(videoPath(1:(end - 4)), 'Out', videoExt));
+createVideo(outputImg(1:count), 1, 10, strcat(videoPath(1:(end - 4)), 'Out', videoExt));
 
 % outputImg.tri = myWrapper(images{1}, images{2}, faceDetector, 'tri');
 % outputImg.TPS = myWrapper(images{1}, images{2}, faceDetector, 'TPS');

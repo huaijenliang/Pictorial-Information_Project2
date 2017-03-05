@@ -1,6 +1,7 @@
 function [fiducialPoints ] = findFiducialPoints( image, faceDetector)
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
+fiducialPoints = [];
 if strcmp(faceDetector.name, 'Zhu')
     image = im2double(image);
 	bs = detect(image, faceDetector.model, faceDetector.model.thresh);
@@ -13,7 +14,13 @@ else
     imwrite(image, filePath);
 	Command = ['python ', faceDetector.codePath, ' ', faceDetector.predictorPath, ' ', filePath];
 	[status, cmdout] = system(Command);
-	
+    
+	Str = strsplit(cmdout, {'\n', ' ', '(', ')', ',',});
+    NumFaces = str2double(Str{1});
+    % No faces found
+    if(isempty(NumFaces) || (NumFaces==0))
+        return;
+    end
 	%% Parse Outputs
 	% Parse the console output and prettify it - please do not modify this code
 	faceData = ParseInputs(cmdout);
