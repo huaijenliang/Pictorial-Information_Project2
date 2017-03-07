@@ -34,16 +34,18 @@ for i = 1:imagesNum
     else
         tempImg = myWrapper(images{i}, sourceImg, faceDetector, wrapMethod);
     end
-    if isempty(outputImg{count + 1})
+    if isempty(tempImg)
         continue;
     end
     % if it is not the first frame, do smoothing
     if count ~= 0
         interImg = round((outputImg{count}+ tempImg) / 2);
         outputImg{count + 1} = interImg;
+        disp(sprintf('frame %d done (smoothing)', count + 1));
         count = count + 1;
     end
     outputImg{count + 1} = tempImg;
+    disp(sprintf('frame %d done', count + 1));
     count = count + 1;
 end
 
