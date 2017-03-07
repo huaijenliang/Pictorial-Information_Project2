@@ -21,7 +21,7 @@ videoPath = '../Videos/Video1/1.avi';
 videoExt = videoPath((end - 3):end);
 images = readVideo(videoPath);
 imagesNum = length(images);
-outputImg = cell(1, imagesNum);
+outputImg = cell(1, imagesNum * 2);
 % imagesName = {'test.jpg'; 'images/1.jpg'};
 % imagesNum = length(imagesName);
 % images = cell(1, imagesNum);
@@ -30,13 +30,20 @@ sourceImg = imread('images/handsome.jpg');
 count = 0;
 for i = 1:imagesNum
     if swapFace
-        outputImg{count + 1} = myWrapper(images{i}, faceDetector, wrapMethod);
+        tempImg = myWrapper(images{i}, faceDetector, wrapMethod);
     else
-        outputImg{count + 1} = myWrapper(images{i}, sourceImg, faceDetector, wrapMethod);
+        tempImg = myWrapper(images{i}, sourceImg, faceDetector, wrapMethod);
     end
-    if isempty(outputImg{count})
+    if isempty(outputImg{count + 1})
         continue;
     end
+    % if it is not the first frame, do smoothing
+    if count ~= 0
+        interImg = round((outputImg{count}+ tempImg) / 2);
+        outputImg{count + 1} = interImg;
+        count = count + 1;
+    end
+    outputImg{count + 1} = tempImg;
     count = count + 1;
 end
 
