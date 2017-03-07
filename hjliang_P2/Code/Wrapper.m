@@ -30,7 +30,7 @@ sourceImg = imread('images/handsome.jpg');
 count = 0;
 for i = 1:imagesNum
     if swapFace
-        tempImg = myWrapper(images{i}, faceDetector, wrapMethod);
+        tempImg = myWrapperForSwap(images{i}, faceDetector, wrapMethod);
     else
         tempImg = myWrapper(images{i}, sourceImg, faceDetector, wrapMethod);
     end
