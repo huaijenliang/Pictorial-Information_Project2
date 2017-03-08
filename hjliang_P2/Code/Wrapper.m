@@ -61,7 +61,7 @@ for i = 1:imagesNum
     count = count + 1;
 end
 
-createVideo(outputImg(1:count), 1, count * videoFormat.FrameRate / double(imagesNum), strcat(videoPath(1:(end - 4)), 'Out', videoExt));
+createVideo(outputImg(1:count), 1, count * videoFormat.FrameRate / double(imagesNum), strcat(videoPath(1:(end - 4)), 'Out'));
 
 % outputImg.tri = myWrapper(images{1}, images{2}, faceDetector, 'tri');
 % outputImg.TPS = myWrapper(images{1}, images{2}, faceDetector, 'TPS');
