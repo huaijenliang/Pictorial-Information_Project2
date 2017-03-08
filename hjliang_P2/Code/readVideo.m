@@ -1,4 +1,4 @@
-function [ images ] = readVideo( fileName )
+function [ video, images ] = readVideo( fileName )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 

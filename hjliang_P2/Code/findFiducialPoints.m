@@ -34,6 +34,9 @@ else
         fiducialPoints{i} = faceData(i).LandMarks;
     end
 end
+if ~iscell(fiducialPoints)
+    fiducialPoints = {fiducialPoints};
+end
 
 end
 

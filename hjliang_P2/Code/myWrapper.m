@@ -5,14 +5,19 @@ outputImg = [];
 destImg = double(destImg);
 sourceImg = double(sourceImg);
 fiducialPointsCell = findFiducialPoints(destImg, faceDetector);
-fiducialPoints{1} = fiducialPointsCell{1};
-fiducialPointsCell = findFiducialPoints(sourceImg, faceDetector);
-fiducialPoints{2} = fiducialPointsCell{1};
-
-if (isempty(fiducialPoints{1}) || isempty(fiducialPoints{2}))
-    disp('Cannot find any face');
+if (isempty(fiducialPointsCell))
+    disp('Cannot find any face in the destination image.');
     return;
 end
+fiducialPoints{1} = fiducialPointsCell{1};
+
+fiducialPointsCell = findFiducialPoints(sourceImg, faceDetector);
+if (isempty(fiducialPointsCell))
+    disp('Cannot find any face in the source image.');
+    return;
+end
+fiducialPoints{2} = fiducialPointsCell{1};
+
 if strcmp(wrapMethod, 'tri')
     outputImg = triWarp(destImg, sourceImg, fiducialPoints);
 else
